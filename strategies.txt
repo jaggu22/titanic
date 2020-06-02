@@ -1,0 +1,34 @@
+strategy1:(72% i.e., 74 to 82)
+	features:PClass,Sex(male=>0,female=>1),Age(replace na by median),SibSp,Parch,Fare,Embarked(C=>0,Q=>1,S=>2,,repaced na by mode)
+	model: DecisionTreeRegressor(no customization)
+strategy2:(72% i.e., 76 to 84)
+	features:PClass,Sex(male=>0,female=>1),Age(replace na by median),SibSp,Parch,Fare
+	model: DecisionTreeRegressor(no customization)
+strategy3:(77% i.e., 78 to 88)
+	features:PClass,Sex(male=>0,female=>1),Age(replace na by median),SibSp,Parch,Fare
+	model: DecisionTreeClassifier
+		using max_leaf_nodes parameter (value which gives minimum mae)
+strategy4:(74%)
+	features:PClass,Sex(male=>0,female=>1),Age(replace na by median),SibSp,Parch,Fare
+	model:RandomForestClassifier
+strategy_impute:(71.7% 76 to 82)
+	features:PClass,Sex(male=>0,female=>1),Age,SibSp,Parch,Fare
+	model:RandomForestClassifier
+		missing values replaced by imputer
+strategy5:(77% 81 to 85)
+	features:PClass,Sex(male=>0,female=>1),Age,SibSp,Parch,Fare
+	model:DecisionTreeClassifier
+		using max_leaf_nodes parameter (value which gives minimum mae)
+		missing values replaced by imputer
+strategy5.1(77% 81 to 87)
+	features:PClass,Sex,Age,SibSp,Parch,Fare
+	model:DecisionTreeClassifier
+		using max_leaf_nodes parameter (value which gives minimum mae)
+		missing values replaced by imputer
+		using Sex field by One-Hot encoding ---pd.get_dummies()
+strategy6(65%)
+	features:PClass,Sex,Age,SibSp,Parch,Fare
+	model:XGBoost(XGBRegressor)
+		using n_estimators,early_stopping_rounds,learning_rate
+		missing values replaced by imputer
+		using Sex field by One-Hot encoding ---pd.get_dummies()
