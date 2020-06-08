@@ -1,6 +1,7 @@
-strategy1:(72% i.e., 74 to 82)
-	features:PClass,Sex(male=>0,female=>1),Age(replace na by median),SibSp,Parch,Fare,Embarked(C=>0,Q=>1,S=>2,,repaced na by mode)
-	model: DecisionTreeRegressor(no customization)
+#age feature is not at all good
+strategy1:(average 82% i.e., 81 to 82.9)
+	features:PClass,Sex(male=>0,female=>1),SibSp,Parch,Fare,Embarked(C=>0,Q=>1,S=>2,,repaced na by mode)
+	model: DecisionTreeClassifier(no customization)
 strategy2:(72% i.e., 76 to 84)
 	features:PClass,Sex(male=>0,female=>1),Age(replace na by median),SibSp,Parch,Fare
 	model: DecisionTreeRegressor(no customization)
